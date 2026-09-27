@@ -1,0 +1,474 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DF52F02138F9309BE248317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B32B33732DD675F0322D05D /* Assets.xcassets */; };
+		4374E1FAFCB03FECF1E4DBAF /* BibleLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1060053FCF32ACC8137141 /* BibleLibrary.swift */; };
+		4CD8C5E3629C6AA08E70984C /* PassageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C90E8513B68A4115CD7238 /* PassageTextView.swift */; };
+		4D4EC1459F80018A82D937B2 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B206590DE12AC3115820B /* PhotoView.swift */; };
+		7CB6D8A693A53EA648FAA925 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5A6252107B3BEA8DB5E184 /* AppState.swift */; };
+		86D463B57888E8CA31AFD26F /* FeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA963F8A8CA245368AD915F /* FeedStore.swift */; };
+		9111EA93AAD45B9B8423FACE /* BibleScrollApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F02D20D7A473DA01EFE6CE /* BibleScrollApp.swift */; };
+		CC255B5C65563544A193DF9D /* FeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5B7DE42E55BC82C348276 /* FeedUITests.swift */; };
+		D2802E087DEFD0D6CEE98E9E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC54762F14A935366F3C3D /* Keychain.swift */; };
+		D52405C1E78B0F91258DF243 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89CAEE8B45C33CAB797B17 /* FeedView.swift */; };
+		DD694DFA3B99451753403786 /* kjv.txt in Resources */ = {isa = PBXBuildFile; fileRef = 271CE2CBA1A7BC04C18AA996 /* kjv.txt */; };
+		DE837304D49D0DAAE631A450 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70A19E2AED8612D94DE0F4 /* SettingsView.swift */; };
+		FAB17A9AFD5E8BE6856C7858 /* UnsplashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78445F49973BC9CBE97DB6B5 /* UnsplashClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0A8E8C443B790C2B59348FC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CB9A9D43F502DC09BF8A2AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B246B18613867614C092DD5;
+			remoteInfo = BibleScroll;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		00C90E8513B68A4115CD7238 /* PassageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageTextView.swift; sourceTree = "<group>"; };
+		14D7A668263E7D7334D94338 /* BibleScrollUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BibleScrollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		271CE2CBA1A7BC04C18AA996 /* kjv.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = kjv.txt; sourceTree = "<group>"; };
+		32F02D20D7A473DA01EFE6CE /* BibleScrollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleScrollApp.swift; sourceTree = "<group>"; };
+		6D1060053FCF32ACC8137141 /* BibleLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleLibrary.swift; sourceTree = "<group>"; };
+		78445F49973BC9CBE97DB6B5 /* UnsplashClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashClient.swift; sourceTree = "<group>"; };
+		7B32B33732DD675F0322D05D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8FA963F8A8CA245368AD915F /* FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStore.swift; sourceTree = "<group>"; };
+		A3F5B7DE42E55BC82C348276 /* FeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUITests.swift; sourceTree = "<group>"; };
+		AE9F24BFE854C0EAF1DE968F /* BibleScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF70A19E2AED8612D94DE0F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C53B206590DE12AC3115820B /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
+		CC5A6252107B3BEA8DB5E184 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		DC89CAEE8B45C33CAB797B17 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		F3EC54762F14A935366F3C3D /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		1292039AE1473CCC6A3C9BAF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AE9F24BFE854C0EAF1DE968F /* BibleScroll.app */,
+				14D7A668263E7D7334D94338 /* BibleScrollUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3D1D9AB0E3CEDE92FF125F74 /* BibleScroll */ = {
+			isa = PBXGroup;
+			children = (
+				CC5A6252107B3BEA8DB5E184 /* AppState.swift */,
+				7B32B33732DD675F0322D05D /* Assets.xcassets */,
+				6D1060053FCF32ACC8137141 /* BibleLibrary.swift */,
+				32F02D20D7A473DA01EFE6CE /* BibleScrollApp.swift */,
+				8FA963F8A8CA245368AD915F /* FeedStore.swift */,
+				DC89CAEE8B45C33CAB797B17 /* FeedView.swift */,
+				F3EC54762F14A935366F3C3D /* Keychain.swift */,
+				00C90E8513B68A4115CD7238 /* PassageTextView.swift */,
+				C53B206590DE12AC3115820B /* PhotoView.swift */,
+				AF70A19E2AED8612D94DE0F4 /* SettingsView.swift */,
+				78445F49973BC9CBE97DB6B5 /* UnsplashClient.swift */,
+				44ADA8D49E2FA7389812EFB9 /* Resources */,
+			);
+			path = BibleScroll;
+			sourceTree = "<group>";
+		};
+		44ADA8D49E2FA7389812EFB9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				271CE2CBA1A7BC04C18AA996 /* kjv.txt */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		58BEFD5ACF950FCB5B9848CD = {
+			isa = PBXGroup;
+			children = (
+				3D1D9AB0E3CEDE92FF125F74 /* BibleScroll */,
+				B7150E3DF20FCC43AE2870F9 /* BibleScrollUITests */,
+				1292039AE1473CCC6A3C9BAF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B7150E3DF20FCC43AE2870F9 /* BibleScrollUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A3F5B7DE42E55BC82C348276 /* FeedUITests.swift */,
+			);
+			path = BibleScrollUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5B246B18613867614C092DD5 /* BibleScroll */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 76C70EC1B2E01E8DFAC24ACC /* Build configuration list for PBXNativeTarget "BibleScroll" */;
+			buildPhases = (
+				60989850F30FEDE40D569164 /* Sources */,
+				532B4763FE9DE3762CC9F941 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BibleScroll;
+			packageProductDependencies = (
+			);
+			productName = BibleScroll;
+			productReference = AE9F24BFE854C0EAF1DE968F /* BibleScroll.app */;
+			productType = "com.apple.product-type.application";
+		};
+		87460CD91B790AB3560BA760 /* BibleScrollUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DDBFE297A73F722EA58297C6 /* Build configuration list for PBXNativeTarget "BibleScrollUITests" */;
+			buildPhases = (
+				75CF96A737D12FCBB4E7C28F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EE464744E61D15A7F8460BB8 /* PBXTargetDependency */,
+			);
+			name = BibleScrollUITests;
+			packageProductDependencies = (
+			);
+			productName = BibleScrollUITests;
+			productReference = 14D7A668263E7D7334D94338 /* BibleScrollUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7CB9A9D43F502DC09BF8A2AB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					5B246B18613867614C092DD5 = {
+						ProvisioningStyle = Automatic;
+					};
+					87460CD91B790AB3560BA760 = {
+						TestTargetID = 5B246B18613867614C092DD5;
+					};
+				};
+			};
+			buildConfigurationList = 391F33DE7E3E7E7F1ADAFAEB /* Build configuration list for PBXProject "BibleScroll" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 58BEFD5ACF950FCB5B9848CD;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 1292039AE1473CCC6A3C9BAF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5B246B18613867614C092DD5 /* BibleScroll */,
+				87460CD91B790AB3560BA760 /* BibleScrollUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		532B4763FE9DE3762CC9F941 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1DF52F02138F9309BE248317 /* Assets.xcassets in Resources */,
+				DD694DFA3B99451753403786 /* kjv.txt in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		60989850F30FEDE40D569164 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7CB6D8A693A53EA648FAA925 /* AppState.swift in Sources */,
+				4374E1FAFCB03FECF1E4DBAF /* BibleLibrary.swift in Sources */,
+				9111EA93AAD45B9B8423FACE /* BibleScrollApp.swift in Sources */,
+				86D463B57888E8CA31AFD26F /* FeedStore.swift in Sources */,
+				D52405C1E78B0F91258DF243 /* FeedView.swift in Sources */,
+				D2802E087DEFD0D6CEE98E9E /* Keychain.swift in Sources */,
+				4CD8C5E3629C6AA08E70984C /* PassageTextView.swift in Sources */,
+				4D4EC1459F80018A82D937B2 /* PhotoView.swift in Sources */,
+				DE837304D49D0DAAE631A450 /* SettingsView.swift in Sources */,
+				FAB17A9AFD5E8BE6856C7858 /* UnsplashClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		75CF96A737D12FCBB4E7C28F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CC255B5C65563544A193DF9D /* FeedUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EE464744E61D15A7F8460BB8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B246B18613867614C092DD5 /* BibleScroll */;
+			targetProxy = 0A8E8C443B790C2B59348FC3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		117BA40F8FBF78245D41D551 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5EBY7RCNLL;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		6A2E20D76CF7F049E24A0F3B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BibleScroll;
+			};
+			name = Release;
+		};
+		713383FA6F1554ED7BC3A048 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = BibleScroll;
+			};
+			name = Debug;
+		};
+		73D62BB5AE247FD97D290EB1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.biblescroll.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		B97D0028F0D5945B3CC66B5F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.biblescroll.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		DBAF8B3DD7F5EA9CDFE07A41 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5EBY7RCNLL;
+				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		391F33DE7E3E7E7F1ADAFAEB /* Build configuration list for PBXProject "BibleScroll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				73D62BB5AE247FD97D290EB1 /* Debug */,
+				B97D0028F0D5945B3CC66B5F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		76C70EC1B2E01E8DFAC24ACC /* Build configuration list for PBXNativeTarget "BibleScroll" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				117BA40F8FBF78245D41D551 /* Debug */,
+				DBAF8B3DD7F5EA9CDFE07A41 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		DDBFE297A73F722EA58297C6 /* Build configuration list for PBXNativeTarget "BibleScrollUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				713383FA6F1554ED7BC3A048 /* Debug */,
+				6A2E20D76CF7F049E24A0F3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7CB9A9D43F502DC09BF8A2AB /* Project object */;
+}
