@@ -5,24 +5,36 @@ struct FeedView: View {
     @EnvironmentObject private var store: FeedStore
     @State private var showingSettings = false
     @State private var selectedChapter: Chapter?
-    @State private var pageDirection: PageDirection = .up
-
-    private enum PageDirection { case up, down }
+    @State private var dragOffset: CGFloat = 0
+    @State private var isSettling = false
 
     var body: some View {
         GeometryReader { geometry in
             ZStack {
-                if let entry = store.currentEntry,
-                   let passage = store.currentPassage {
-                    readingPage(entry: entry, passage: passage, size: geometry.size)
-                        .id(entry.id)
-                        .transition(pageTransition)
+                if !store.history.isEmpty {
+                    ZStack {
+                        if store.currentIndex > 0 {
+                            page(for: store.history[store.currentIndex - 1], size: geometry.size)
+                                .offset(y: -geometry.size.height + dragOffset)
+                        }
+                        if let entry = store.currentEntry {
+                            page(for: entry, size: geometry.size)
+                                .offset(y: dragOffset)
+                        }
+                        if let next = nextEntry {
+                            page(for: next, size: geometry.size)
+                                .offset(y: geometry.size.height + dragOffset)
+                        }
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
+                    .contentShape(Rectangle())
+                    .gesture(pageDrag(height: geometry.size.height))
+                    .clipped()
                 } else {
                     welcomePage
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .clipped()
             .background(Color(red: 0.04, green: 0.10, blue: 0.13))
             .overlay(alignment: .topTrailing) {
                 Button { showingSettings = true } label: {
@@ -51,47 +63,94 @@ struct FeedView: View {
         .statusBarHidden()
     }
 
-    private func readingPage(entry: HistoryEntry, passage: Passage, size: CGSize) -> some View {
+    private var nextEntry: HistoryEntry? {
+        if store.currentIndex + 1 < store.history.count {
+            return store.history[store.currentIndex + 1]
+        }
+        return store.previewEntry
+    }
+
+    private func pageDrag(height: CGFloat) -> some Gesture {
+        DragGesture(minimumDistance: 10)
+            .onChanged { value in
+                guard !isSettling else { return }
+                let translation = value.translation.height
+                if translation < 0, nextEntry != nil {
+                    dragOffset = max(-height, translation)
+                } else if translation > 0, store.currentIndex > 0 {
+                    dragOffset = min(height, translation)
+                }
+            }
+            .onEnded { value in
+                guard !isSettling else { return }
+                let projected = value.predictedEndTranslation.height
+                let shouldAdvance = dragOffset < -height * 0.18 || projected < -height * 0.4
+                let shouldGoBack = dragOffset > height * 0.18 || projected > height * 0.4
+                if shouldAdvance, nextEntry != nil {
+                    settle(to: -height, forward: true)
+                } else if shouldGoBack, store.currentIndex > 0 {
+                    settle(to: height, forward: false)
+                } else {
+                    withAnimation(.smooth(duration: 0.25)) { dragOffset = 0 }
+                }
+            }
+    }
+
+    private func settle(to destination: CGFloat, forward: Bool) {
+        isSettling = true
+        withAnimation(.easeOut(duration: 0.25)) { dragOffset = destination }
+        Task { @MainActor in
+            try? await Task.sleep(nanoseconds: 250_000_000)
+            if forward {
+                await store.next()
+            } else {
+                store.previous()
+            }
+            var transaction = Transaction(animation: nil)
+            transaction.disablesAnimations = true
+            withTransaction(transaction) { dragOffset = 0 }
+            isSettling = false
+        }
+    }
+
+    private func page(for entry: HistoryEntry, size: CGSize) -> some View {
+        let passage = store.passage(for: entry)
         let photo = store.photo(for: entry.photoURL)
         let availableWidth = min(size.width - 54, 520)
-        let textHeight = measuredHeight(passage.text, width: availableWidth)
+        let textHeight = passage.map { measuredHeight($0.text, width: availableWidth) } ?? 0
         let maxTextHeight = max(160, size.height * 0.53)
         let displayHeight = min(textHeight + 10, maxTextHeight)
 
         return ZStack {
-            PhotoView(url: entry.photoURL, active: true)
-                .id(entry.id)
-                .contentShape(Rectangle())
-                .gesture(backgroundSwipe)
+            PhotoView(url: entry.photoURL, active: store.currentEntry?.id == entry.id)
+                .frame(width: size.width, height: size.height)
 
-            VStack(spacing: 0) {
-                Spacer(minLength: 90)
-                VStack(spacing: 21) {
-//                    Text("SCRIPTURE FOR THIS MOMENT")
-//                        .font(.system(size: 10, weight: .semibold, design: .rounded))
-//                        .tracking(2.7)
-//                        .foregroundStyle(.white.opacity(0.82))
+            if let passage {
+                VStack(spacing: 0) {
+                    Spacer(minLength: 90)
+                    VStack(spacing: 21) {
+                        Text(passage.text)
+                            .font(.custom("Georgia", size: 25, relativeTo: .title))
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(Color(red: 0.99, green: 0.97, blue: 0.92))
+                            .minimumScaleFactor(0.65)
+                            .lineLimit(30)
+                            .frame(width: availableWidth, height: displayHeight)
+                            .accessibilityLabel(passage.text)
 
-                    PassageTextView(
-                        text: passage.text,
-                        onNext: moveNext,
-                        onPrevious: movePrevious
-                    )
-                    .id(entry.id)
-                    .frame(width: availableWidth, height: displayHeight)
-
-                    Button {
-                        selectedChapter = BibleLibrary.shared.chapter(for: passage.key)
-                    } label: {
-                        Text(passage.reference.uppercased() + "  ·  KJV")
-                            .font(.system(size: 12, weight: .semibold, design: .rounded))
-                            .tracking(1.8)
-                            .foregroundStyle(.white)
+                        Button {
+                            selectedChapter = BibleLibrary.shared.chapter(for: passage.key)
+                        } label: {
+                            Text(passage.reference.uppercased() + "  ·  KJV")
+                                .font(.system(size: 12, weight: .semibold, design: .rounded))
+                                .tracking(1.8)
+                                .foregroundStyle(.white)
+                        }
+                        .accessibilityHint("Opens the full chapter")
                     }
-                    .accessibilityHint("Opens the full chapter")
+                    .frame(maxWidth: .infinity)
+                    Spacer(minLength: 90)
                 }
-                .frame(maxWidth: .infinity)
-                Spacer(minLength: 90)
             }
 
             VStack {
@@ -112,11 +171,11 @@ struct FeedView: View {
                 .padding(.bottom, 36)
             }
 
-            if let error = store.errorMessage {
+            if let error = store.errorMessage, store.currentEntry?.id == entry.id {
                 VStack {
                     Spacer()
                     Button {
-                        moveNext()
+                        Task { await store.loadNext() }
                     } label: {
                         Label(error, systemImage: "arrow.clockwise")
                             .font(.caption)
@@ -127,8 +186,8 @@ struct FeedView: View {
                 }
             }
         }
-        .accessibilityAction(named: "Next passage") { moveNext() }
-        .accessibilityAction(named: "Previous passage") { movePrevious() }
+        .frame(width: size.width, height: size.height)
+        .clipped()
     }
 
     private var welcomePage: some View {
@@ -156,34 +215,6 @@ struct FeedView: View {
             }
             .padding(28)
         }
-    }
-
-    private var backgroundSwipe: some Gesture {
-        DragGesture(minimumDistance: 35)
-            .onEnded { value in
-                if value.translation.height < -65 {
-                    moveNext()
-                } else if value.translation.height > 65 {
-                    movePrevious()
-                }
-            }
-    }
-
-    private var pageTransition: AnyTransition {
-        if pageDirection == .up {
-            return .asymmetric(insertion: .move(edge: .bottom), removal: .move(edge: .top))
-        }
-        return .asymmetric(insertion: .move(edge: .top), removal: .move(edge: .bottom))
-    }
-
-    private func moveNext() {
-        pageDirection = .up
-        Task { await store.next() }
-    }
-
-    private func movePrevious() {
-        pageDirection = .down
-        store.previous()
     }
 
     private func measuredHeight(_ text: String, width: CGFloat) -> CGFloat {

@@ -6,6 +6,7 @@ struct PhotoView: View {
 
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var moving = false
+    @State private var loadedImage: (url: String, image: UIImage)?
 
     private var direction: CGFloat {
         let hash = url.utf8.reduce(UInt64(14695981039346656037)) { ($0 ^ UInt64($1)) &* 1099511628211 }
@@ -14,14 +15,11 @@ struct PhotoView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            AsyncImage(url: URL(string: url), transaction: Transaction(animation: .easeInOut(duration: 0.25))) { phase in
-                switch phase {
-                case .success(let image):
-                    image.resizable().scaledToFill()
-                case .empty, .failure:
+            Group {
+                if let image = loadedImage?.url == url ? loadedImage?.image : PhotoImageCache.shared.cached(url) {
+                    Image(uiImage: image).resizable().scaledToFill()
+                } else {
                     LinearGradient(colors: [.init(red: 0.16, green: 0.28, blue: 0.29), .init(red: 0.03, green: 0.08, blue: 0.12)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                @unknown default:
-                    Color.black
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
@@ -42,8 +40,10 @@ struct PhotoView: View {
             .onAppear { startMotion() }
             .onChange(of: active) { _, _ in startMotion() }
             .onChange(of: url) { _, _ in startMotion() }
+            .task(id: url) {
+                loadedImage = await PhotoImageCache.shared.load(url).map { (url, $0) }
+            }
         }
-        .ignoresSafeArea()
     }
 
     private func startMotion() {

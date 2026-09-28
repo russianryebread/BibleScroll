@@ -8,22 +8,33 @@ final class FeedStore: ObservableObject {
     @Published private(set) var isLoading = false
     @Published private(set) var errorMessage: String?
     @Published private(set) var accessKey: String
+    @Published private(set) var previewEntry: HistoryEntry?
 
     private var state: SavedState
     private let bible = BibleLibrary.shared
     private let unsplash = UnsplashClient()
     private var remoteRemaining: Int?
     private var hasStarted = false
-    private var preparedNext: Task<(String, PhotoRecord)?, Never>?
+    private var preparedNext: Task<HistoryEntry?, Never>?
 
     init() {
         #if DEBUG
         let loaded: SavedState
-        if ProcessInfo.processInfo.arguments.contains("-UITestHistory") {
+        if ProcessInfo.processInfo.arguments.contains("-UITestLongHistory") {
+            loaded = SavedState(
+                history: (0..<17).map { index in
+                    HistoryEntry(
+                        passageKey: index.isMultiple(of: 2) ? "PSA 23:1-2" : "JHN 1:4-5",
+                        photoURL: "https://invalid.example/\(index).jpg"
+                    )
+                },
+                currentIndex: 16
+            )
+        } else if ProcessInfo.processInfo.arguments.contains("-UITestHistory") {
             loaded = SavedState(
                 history: [
                     HistoryEntry(passageKey: "PSA 23:1-2", photoURL: "https://invalid.example/one.jpg"),
-                    HistoryEntry(passageKey: "JOH 1:4-5", photoURL: "https://invalid.example/two.jpg")
+                    HistoryEntry(passageKey: "JHN 1:4-5", photoURL: "https://invalid.example/two.jpg")
                 ],
                 currentIndex: 1
             )
@@ -63,7 +74,7 @@ final class FeedStore: ObservableObject {
         hasStarted = true
         if history.isEmpty && hasAccessKey {
             await loadNext()
-        } else if !history.isEmpty && currentIndex == history.count - 1 {
+        } else if !history.isEmpty && currentIndex >= history.count - 2 {
             prepareNext()
         }
     }
@@ -75,22 +86,22 @@ final class FeedStore: ObservableObject {
         errorMessage = nil
         if history.isEmpty && !trimmed.isEmpty {
             await loadNext()
-        } else if currentIndex == history.count - 1 {
+        } else if currentIndex >= history.count - 2 {
             prepareNext()
         }
     }
 
     func previous() {
         guard currentIndex > 0 else { return }
-        withAnimation(.smooth(duration: 0.42)) { currentIndex -= 1 }
+        currentIndex -= 1
         persist()
     }
 
     func next() async {
         if currentIndex + 1 < history.count {
-            withAnimation(.smooth(duration: 0.42)) { currentIndex += 1 }
+            currentIndex += 1
             persist()
-            if currentIndex == history.count - 1 { prepareNext() }
+            if currentIndex >= history.count - 2 { prepareNext() }
             return
         }
         await loadNext()
@@ -100,7 +111,7 @@ final class FeedStore: ObservableObject {
         guard let index = history.firstIndex(where: { $0.id == entry.id }) else { return }
         currentIndex = index
         persist()
-        if currentIndex == history.count - 1 { prepareNext() }
+        if currentIndex >= history.count - 2 { prepareNext() }
     }
 
     func loadNext() async {
@@ -110,31 +121,30 @@ final class FeedStore: ObservableObject {
         defer { isLoading = false }
 
         do {
-            let passageKey: String
-            let photo: PhotoRecord
+            let entry: HistoryEntry
             if let pending = preparedNext, let result = await pending.value {
-                (passageKey, photo) = result
+                entry = result
             } else {
                 let recent = Set(history.suffix(80).map(\.passageKey))
                 guard let key = bible.randomKey(excluding: recent) else {
                     errorMessage = "The bundled KJV could not be read."
                     return
                 }
-                passageKey = key
-                photo = try await nextPhoto()
+                let photo = try await nextPhoto()
+                entry = HistoryEntry(passageKey: key, photoURL: photo.url)
             }
             preparedNext = nil
-            let entry = HistoryEntry(passageKey: passageKey, photoURL: photo.url)
+            previewEntry = nil
             state.history.append(entry)
             state.currentIndex = state.history.count - 1
-            withAnimation(.smooth(duration: 0.42)) {
-                history = state.history
-                currentIndex = state.currentIndex
-            }
+            errorMessage = nil
+            history = state.history
+            currentIndex = state.currentIndex
             StateFile.save(state)
             prepareNext()
         } catch {
             preparedNext = nil
+            previewEntry = nil
             errorMessage = error.localizedDescription
         }
     }
@@ -144,9 +154,22 @@ final class FeedStore: ObservableObject {
         preparedNext = Task { [weak self] in
             guard let self else { return nil }
             let recent = Set(self.history.suffix(80).map(\.passageKey))
-            guard let key = self.bible.randomKey(excluding: recent) else { return nil }
-            guard let photo = try? await self.nextPhoto() else { return nil }
-            return (key, photo)
+            guard let key = self.bible.randomKey(excluding: recent) else {
+                self.preparedNext = nil
+                self.errorMessage = "The bundled KJV could not be read."
+                return nil
+            }
+            do {
+                let photo = try await self.nextPhoto()
+                let entry = HistoryEntry(passageKey: key, photoURL: photo.url)
+                self.previewEntry = entry
+                Task { await PhotoImageCache.shared.load(photo.url) }
+                return entry
+            } catch {
+                self.preparedNext = nil
+                self.errorMessage = error.localizedDescription
+                return nil
+            }
         }
     }
 
