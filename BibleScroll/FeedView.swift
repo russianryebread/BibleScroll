@@ -124,6 +124,7 @@ struct FeedView: View {
         return ZStack {
             PhotoView(url: entry.photoURL, active: store.currentEntry?.id == entry.id)
                 .frame(width: size.width, height: size.height)
+                .id(entry.id)
 
             if let passage {
                 VStack(spacing: 0) {
@@ -131,6 +132,7 @@ struct FeedView: View {
                     VStack(spacing: 21) {
                         Text(passage.text)
                             .font(.custom("Georgia", size: 25, relativeTo: .title))
+                            .lineSpacing(4)
                             .multilineTextAlignment(.center)
                             .foregroundStyle(Color(red: 0.99, green: 0.97, blue: 0.92))
                             .minimumScaleFactor(0.65)
@@ -225,6 +227,7 @@ struct FeedView: View {
             attributes: [.font: font],
             context: nil
         )
-        return ceil(bounds.height)
+        let lineCount = max(1, Int(ceil(bounds.height / font.lineHeight)))
+        return ceil(bounds.height + CGFloat(lineCount - 1) * 4)
     }
 }

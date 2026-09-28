@@ -26,6 +26,8 @@ final class FeedUITests: XCTestCase {
         reference.tap()
         XCTAssertTrue(app.navigationBars["John 1"].waitForExistence(timeout: 5))
         XCTAssertTrue(app.staticTexts["1"].exists)
+        app.buttons["Close"].tap()
+        XCTAssertTrue(reference.waitForExistence(timeout: 5))
     }
 
     func testLongHistoryOpensFullList() {

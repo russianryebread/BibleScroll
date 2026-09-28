@@ -15,17 +15,22 @@ struct PhotoView: View {
 
     var body: some View {
         GeometryReader { geometry in
-            Group {
+            ZStack {
                 if let image = loadedImage?.url == url ? loadedImage?.image : PhotoImageCache.shared.cached(url) {
-                    Image(uiImage: image).resizable().scaledToFill()
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .clipped()
                 } else {
                     LinearGradient(colors: [.init(red: 0.16, green: 0.28, blue: 0.29), .init(red: 0.03, green: 0.08, blue: 0.12)], startPoint: .topLeading, endPoint: .bottomTrailing)
                 }
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
-            .scaleEffect(reduceMotion ? 1.02 : (moving ? 1.15 : 1.04))
-            .offset(x: reduceMotion ? 0 : (moving ? 9 * direction : -9 * direction),
-                    y: reduceMotion ? 0 : (moving ? -7 : 7))
+            // Even at the smallest zoom, the overscan exceeds the pan on a phone-sized viewport.
+            .scaleEffect(reduceMotion ? 1.08 : (moving ? 1.16 : 1.08))
+            .offset(x: reduceMotion ? 0 : (moving ? 7 * direction : -7 * direction),
+                    y: reduceMotion ? 0 : (moving ? -5 : 5))
             .frame(width: geometry.size.width, height: geometry.size.height)
             .clipped()
             .overlay {
@@ -37,17 +42,19 @@ struct PhotoView: View {
                     ], startPoint: .top, endPoint: .bottom
                 )
             }
-            .onAppear { startMotion() }
-            .onChange(of: active) { _, _ in startMotion() }
-            .onChange(of: url) { _, _ in startMotion() }
             .task(id: url) {
                 loadedImage = await PhotoImageCache.shared.load(url).map { (url, $0) }
             }
+            .onAppear { updateMotion() }
+            .onChange(of: active) { _, _ in updateMotion() }
+            .onChange(of: reduceMotion) { _, _ in updateMotion() }
         }
     }
 
-    private func startMotion() {
-        moving = false
+    private func updateMotion() {
+        var transaction = Transaction(animation: nil)
+        transaction.disablesAnimations = true
+        withTransaction(transaction) { moving = false }
         guard active && !reduceMotion else { return }
         withAnimation(.easeInOut(duration: 20)) { moving = true }
     }

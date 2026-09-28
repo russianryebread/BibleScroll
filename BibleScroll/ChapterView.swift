@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ChapterView: View {
+    @Environment(\.dismiss) private var dismiss
     let chapter: Chapter
 
     var body: some View {
@@ -25,6 +26,11 @@ struct ChapterView: View {
             }
             .navigationTitle(chapter.reference)
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Close") { dismiss() }
+                }
+            }
         }
     }
 }
