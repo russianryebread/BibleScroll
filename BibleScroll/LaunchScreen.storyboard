@@ -15,12 +15,15 @@
                         <viewLayoutGuide key="safeArea" id="splash-safe-area"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="brand-stack">
-                                <rect key="frame" x="92" y="350" width="209" height="152"/>
+                                <rect key="frame" x="92" y="344" width="209" height="164"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="B" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="brand-mark">
-                                        <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="94"/>
-                                        <color key="textColor" red="0.98" green="0.96" blue="0.88" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="BrandIcon" translatesAutoresizingMaskIntoConstraints="NO" id="brand-mark">
+                                        <rect key="frame" x="46.5" y="0.0" width="116" height="116"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="116" id="brand-mark-width"/>
+                                            <constraint firstAttribute="height" constant="116" id="brand-mark-height"/>
+                                        </constraints>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Bible Scroll" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="brand-name">
                                         <fontDescription key="fontDescription" name="Georgia" family="Georgia" pointSize="30"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -39,4 +42,7 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="BrandIcon" width="512" height="512"/>
+    </resources>
 </document>

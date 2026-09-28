@@ -7,9 +7,10 @@ struct SplashView: View {
                 .ignoresSafeArea()
 
             VStack(spacing: 12) {
-                Text("B")
-                    .font(.custom("Georgia", size: 94))
-                    .foregroundStyle(Color(red: 0.98, green: 0.96, blue: 0.88))
+                Image("BrandIcon")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 116, height: 116)
                     .accessibilityHidden(true)
 
                 Text("Bible Scroll")
