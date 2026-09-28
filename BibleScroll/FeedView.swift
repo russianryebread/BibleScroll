@@ -4,6 +4,7 @@ import UIKit
 struct FeedView: View {
     @EnvironmentObject private var store: FeedStore
     @State private var showingSettings = false
+    @State private var selectedChapter: Chapter?
     @State private var pageDirection: PageDirection = .up
 
     private enum PageDirection { case up, down }
@@ -46,6 +47,7 @@ struct FeedView: View {
         }
         .ignoresSafeArea()
         .sheet(isPresented: $showingSettings) { SettingsView() }
+        .sheet(item: $selectedChapter) { ChapterView(chapter: $0) }
         .statusBarHidden()
     }
 
@@ -78,10 +80,15 @@ struct FeedView: View {
                     .id(entry.id)
                     .frame(width: availableWidth, height: displayHeight)
 
-                    Text(passage.reference.uppercased() + "  ·  KJV")
-                        .font(.system(size: 12, weight: .semibold, design: .rounded))
-                        .tracking(1.8)
-                        .foregroundStyle(.white)
+                    Button {
+                        selectedChapter = BibleLibrary.shared.chapter(for: passage.key)
+                    } label: {
+                        Text(passage.reference.uppercased() + "  ·  KJV")
+                            .font(.system(size: 12, weight: .semibold, design: .rounded))
+                            .tracking(1.8)
+                            .foregroundStyle(.white)
+                    }
+                    .accessibilityHint("Opens the full chapter")
                 }
                 .frame(maxWidth: .infinity)
                 Spacer(minLength: 90)

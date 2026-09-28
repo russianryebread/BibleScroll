@@ -32,7 +32,7 @@ struct SettingsView: View {
                         Text("Your viewed passages will appear here.")
                             .foregroundStyle(.secondary)
                     } else {
-                        ForEach(store.history.reversed()) { entry in
+                        ForEach(store.history.suffix(15).reversed()) { entry in
                             Button {
                                 store.jump(to: entry)
                                 dismiss()
@@ -55,6 +55,13 @@ struct SettingsView: View {
                                 }
                             }
                             .buttonStyle(.plain)
+                        }
+                        if store.history.count > 15 {
+                            NavigationLink {
+                                ReadingHistoryView { dismiss() }
+                            } label: {
+                                Label("See all history (\(store.history.count))", systemImage: "clock.arrow.circlepath")
+                            }
                         }
                     }
                 }

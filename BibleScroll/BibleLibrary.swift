@@ -7,6 +7,19 @@ struct Passage: Identifiable {
     var id: String { key }
 }
 
+struct Chapter: Identifiable {
+    struct Verse: Identifiable {
+        let number: Int
+        let text: String
+        var id: Int { number }
+    }
+
+    let key: String
+    let reference: String
+    let verses: [Verse]
+    var id: String { key }
+}
+
 final class BibleLibrary {
     static let shared = BibleLibrary()
 
@@ -86,5 +99,18 @@ final class BibleLibrary {
               let bookName = bookNames[first.book] else { return nil }
         let reference = "\(bookName) \(first.chapter):\(start)–\(end)"
         return Passage(key: key, reference: reference, text: selected.map(\.text).joined(separator: " "))
+    }
+
+    func chapter(for passageKey: String) -> Chapter? {
+        guard let colon = passageKey.lastIndex(of: ":") else { return nil }
+        let key = String(passageKey[..<colon])
+        guard let verses = chapters[key]?.sorted(by: { $0.number < $1.number }),
+              let first = verses.first,
+              let bookName = bookNames[first.book] else { return nil }
+        return Chapter(
+            key: key,
+            reference: "\(bookName) \(first.chapter)",
+            verses: verses.map { Chapter.Verse(number: $0.number, text: $0.text) }
+        )
     }
 }
