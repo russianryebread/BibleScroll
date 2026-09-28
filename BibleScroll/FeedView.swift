@@ -100,7 +100,7 @@ struct FeedView: View {
                     }
                 }
                 .font(.system(size: 10, weight: .medium))
-                .foregroundStyle(.white.opacity(0.84))
+                .foregroundStyle(.white.opacity(0.44))
                 .padding(.horizontal, 22)
                 .padding(.bottom, 36)
             }

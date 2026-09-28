@@ -17,9 +17,11 @@
 		CC255B5C65563544A193DF9D /* FeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5B7DE42E55BC82C348276 /* FeedUITests.swift */; };
 		D2802E087DEFD0D6CEE98E9E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC54762F14A935366F3C3D /* Keychain.swift */; };
 		D52405C1E78B0F91258DF243 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89CAEE8B45C33CAB797B17 /* FeedView.swift */; };
+		D6446E3B139C5C5B527586CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138E826EB3AA271F21E5A7AF /* SplashView.swift */; };
 		DD694DFA3B99451753403786 /* kjv.txt in Resources */ = {isa = PBXBuildFile; fileRef = 271CE2CBA1A7BC04C18AA996 /* kjv.txt */; };
 		DE837304D49D0DAAE631A450 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF70A19E2AED8612D94DE0F4 /* SettingsView.swift */; };
 		FAB17A9AFD5E8BE6856C7858 /* UnsplashClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78445F49973BC9CBE97DB6B5 /* UnsplashClient.swift */; };
+		FD6EFE8D2D2984DBBC471441 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CF00C6A8E35994EABC019B8 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,9 +36,11 @@
 
 /* Begin PBXFileReference section */
 		00C90E8513B68A4115CD7238 /* PassageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageTextView.swift; sourceTree = "<group>"; };
+		138E826EB3AA271F21E5A7AF /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
 		14D7A668263E7D7334D94338 /* BibleScrollUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = BibleScrollUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		271CE2CBA1A7BC04C18AA996 /* kjv.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = kjv.txt; sourceTree = "<group>"; };
 		32F02D20D7A473DA01EFE6CE /* BibleScrollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleScrollApp.swift; sourceTree = "<group>"; };
+		4CF00C6A8E35994EABC019B8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D1060053FCF32ACC8137141 /* BibleLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleLibrary.swift; sourceTree = "<group>"; };
 		78445F49973BC9CBE97DB6B5 /* UnsplashClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashClient.swift; sourceTree = "<group>"; };
 		7B32B33732DD675F0322D05D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -70,9 +74,11 @@
 				8FA963F8A8CA245368AD915F /* FeedStore.swift */,
 				DC89CAEE8B45C33CAB797B17 /* FeedView.swift */,
 				F3EC54762F14A935366F3C3D /* Keychain.swift */,
+				4CF00C6A8E35994EABC019B8 /* LaunchScreen.storyboard */,
 				00C90E8513B68A4115CD7238 /* PassageTextView.swift */,
 				C53B206590DE12AC3115820B /* PhotoView.swift */,
 				AF70A19E2AED8612D94DE0F4 /* SettingsView.swift */,
+				138E826EB3AA271F21E5A7AF /* SplashView.swift */,
 				78445F49973BC9CBE97DB6B5 /* UnsplashClient.swift */,
 				44ADA8D49E2FA7389812EFB9 /* Resources */,
 			);
@@ -186,6 +192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1DF52F02138F9309BE248317 /* Assets.xcassets in Resources */,
+				FD6EFE8D2D2984DBBC471441 /* LaunchScreen.storyboard in Resources */,
 				DD694DFA3B99451753403786 /* kjv.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,6 +213,7 @@
 				4CD8C5E3629C6AA08E70984C /* PassageTextView.swift in Sources */,
 				4D4EC1459F80018A82D937B2 /* PhotoView.swift in Sources */,
 				DE837304D49D0DAAE631A450 /* SettingsView.swift in Sources */,
+				D6446E3B139C5C5B527586CE /* SplashView.swift in Sources */,
 				FAB17A9AFD5E8BE6856C7858 /* UnsplashClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -238,9 +246,8 @@
 				DEVELOPMENT_TEAM = 5EBY7RCNLL;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -336,7 +343,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
@@ -401,7 +408,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
@@ -425,9 +432,8 @@
 				DEVELOPMENT_TEAM = 5EBY7RCNLL;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
