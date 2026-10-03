@@ -3,30 +3,10 @@ import SwiftUI
 struct SettingsView: View {
     @EnvironmentObject private var store: FeedStore
     @Environment(\.dismiss) private var dismiss
-    @State private var enteredKey = ""
-    @State private var savedKey = false
 
     var body: some View {
         NavigationStack {
             List {
-                Section {
-                    SecureField("Unsplash access key", text: $enteredKey)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
-                    Button(savedKey ? "Saved" : "Save access key") {
-                        Task {
-                            await store.setAccessKey(enteredKey)
-                            savedKey = true
-                        }
-                    }
-                    .disabled(enteredKey.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-                    Link("Create an Unsplash access key", destination: URL(string: "https://unsplash.com/developers")!)
-                } header: {
-                    Text("Photos")
-                } footer: {
-                    Text("The app keeps your access key on this device and requests at most 40 new photos per hour before reusing its photo pool. Use the Access Key, not the Secret Key.")
-                }
-
                 Section("Reading history") {
                     if store.history.isEmpty {
                         Text("Your viewed passages will appear here.")
@@ -80,6 +60,5 @@ struct SettingsView: View {
                 }
             }
         }
-        .onAppear { enteredKey = store.accessKey }
     }
 }

@@ -1,0 +1,9 @@
+{
+  "id" : "466e3609-6c42-4198-9061-adb6508f7b36",
+  "targets" : [
+    {
+      "id" : "c1523b40-44a0-4d33-8eeb-a67f4f79db65",
+      "name" : "BibleScroll"
+    }
+  ]
+}

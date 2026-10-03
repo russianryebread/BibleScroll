@@ -7,18 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04B7AB365F53428126D53B1D /* daily-verses.json in Resources */ = {isa = PBXBuildFile; fileRef = BC5953DF10FF4F91FD40004A /* daily-verses.json */; };
 		1DF52F02138F9309BE248317 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B32B33732DD675F0322D05D /* Assets.xcassets */; };
+		27AFDE928AF66B80A4758D09 /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98885B6C876D17383FF4B94 /* AppConfiguration.swift */; };
 		40F7A4964D0BAD08438BD1E8 /* ReadingHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27549D6E83318165F64A3421 /* ReadingHistoryView.swift */; };
 		4374E1FAFCB03FECF1E4DBAF /* BibleLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1060053FCF32ACC8137141 /* BibleLibrary.swift */; };
 		4CD8C5E3629C6AA08E70984C /* PassageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00C90E8513B68A4115CD7238 /* PassageTextView.swift */; };
 		4D4EC1459F80018A82D937B2 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C53B206590DE12AC3115820B /* PhotoView.swift */; };
+		554DF2F81D44E4ADF034E377 /* BibleScrollWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 3B1940559D97825DEBD50679 /* BibleScrollWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		77262BEC4E94F389DCE40F1F /* DailyVerse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E756207B0C0AFCD84530E29F /* DailyVerse.swift */; };
 		7CB6D8A693A53EA648FAA925 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC5A6252107B3BEA8DB5E184 /* AppState.swift */; };
+		8600D0A33589CA746D109157 /* DailyVerseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B168563A86625D15BD56ED6D /* DailyVerseWidget.swift */; };
 		86D463B57888E8CA31AFD26F /* FeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FA963F8A8CA245368AD915F /* FeedStore.swift */; };
 		9111EA93AAD45B9B8423FACE /* BibleScrollApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32F02D20D7A473DA01EFE6CE /* BibleScrollApp.swift */; };
 		C0451C108F50827E24A82B7D /* PhotoImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD93F8198921FA99685547F /* PhotoImageCache.swift */; };
 		C57D99DB2B648DF30047A7EE /* ChapterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAEBC15BD829C87903E54AC /* ChapterView.swift */; };
 		CC255B5C65563544A193DF9D /* FeedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F5B7DE42E55BC82C348276 /* FeedUITests.swift */; };
-		D2802E087DEFD0D6CEE98E9E /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EC54762F14A935366F3C3D /* Keychain.swift */; };
 		D52405C1E78B0F91258DF243 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC89CAEE8B45C33CAB797B17 /* FeedView.swift */; };
 		D6446E3B139C5C5B527586CE /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 138E826EB3AA271F21E5A7AF /* SplashView.swift */; };
 		DD694DFA3B99451753403786 /* kjv.txt in Resources */ = {isa = PBXBuildFile; fileRef = 271CE2CBA1A7BC04C18AA996 /* kjv.txt */; };
@@ -35,7 +39,28 @@
 			remoteGlobalIDString = 5B246B18613867614C092DD5;
 			remoteInfo = BibleScroll;
 		};
+		5AB9873F85F3F30FDA77D5DB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7CB9A9D43F502DC09BF8A2AB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5197FEC1630B89783DB6924A;
+			remoteInfo = BibleScrollWidgets;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7BB9CCD9C5AC79A851C7E918 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				554DF2F81D44E4ADF034E377 /* BibleScrollWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		00C90E8513B68A4115CD7238 /* PassageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PassageTextView.swift; sourceTree = "<group>"; };
@@ -45,19 +70,24 @@
 		271CE2CBA1A7BC04C18AA996 /* kjv.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = kjv.txt; sourceTree = "<group>"; };
 		27549D6E83318165F64A3421 /* ReadingHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingHistoryView.swift; sourceTree = "<group>"; };
 		32F02D20D7A473DA01EFE6CE /* BibleScrollApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleScrollApp.swift; sourceTree = "<group>"; };
+		3B1940559D97825DEBD50679 /* BibleScrollWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = BibleScrollWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CF00C6A8E35994EABC019B8 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6D1060053FCF32ACC8137141 /* BibleLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BibleLibrary.swift; sourceTree = "<group>"; };
 		78445F49973BC9CBE97DB6B5 /* UnsplashClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnsplashClient.swift; sourceTree = "<group>"; };
 		7B32B33732DD675F0322D05D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8BF7EC200A87A16BF32DBD96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8FA963F8A8CA245368AD915F /* FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStore.swift; sourceTree = "<group>"; };
 		A3F5B7DE42E55BC82C348276 /* FeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUITests.swift; sourceTree = "<group>"; };
-		AE9F24BFE854C0EAF1DE968F /* BibleScroll.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BibleScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AE9F24BFE854C0EAF1DE968F /* BibleScroll.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BibleScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF70A19E2AED8612D94DE0F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		B168563A86625D15BD56ED6D /* DailyVerseWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyVerseWidget.swift; sourceTree = "<group>"; };
+		BC5953DF10FF4F91FD40004A /* daily-verses.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "daily-verses.json"; sourceTree = "<group>"; };
 		C53B206590DE12AC3115820B /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		CC5A6252107B3BEA8DB5E184 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		D98885B6C876D17383FF4B94 /* AppConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		DC89CAEE8B45C33CAB797B17 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		E756207B0C0AFCD84530E29F /* DailyVerse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyVerse.swift; sourceTree = "<group>"; };
 		EBAEBC15BD829C87903E54AC /* ChapterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterView.swift; sourceTree = "<group>"; };
-		F3EC54762F14A935366F3C3D /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -66,6 +96,7 @@
 			children = (
 				AE9F24BFE854C0EAF1DE968F /* BibleScroll.app */,
 				14D7A668263E7D7334D94338 /* BibleScrollUITests.xctest */,
+				3B1940559D97825DEBD50679 /* BibleScrollWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -73,6 +104,7 @@
 		3D1D9AB0E3CEDE92FF125F74 /* BibleScroll */ = {
 			isa = PBXGroup;
 			children = (
+				D98885B6C876D17383FF4B94 /* AppConfiguration.swift */,
 				CC5A6252107B3BEA8DB5E184 /* AppState.swift */,
 				7B32B33732DD675F0322D05D /* Assets.xcassets */,
 				6D1060053FCF32ACC8137141 /* BibleLibrary.swift */,
@@ -80,7 +112,6 @@
 				EBAEBC15BD829C87903E54AC /* ChapterView.swift */,
 				8FA963F8A8CA245368AD915F /* FeedStore.swift */,
 				DC89CAEE8B45C33CAB797B17 /* FeedView.swift */,
-				F3EC54762F14A935366F3C3D /* Keychain.swift */,
 				4CF00C6A8E35994EABC019B8 /* LaunchScreen.storyboard */,
 				00C90E8513B68A4115CD7238 /* PassageTextView.swift */,
 				1BD93F8198921FA99685547F /* PhotoImageCache.swift */,
@@ -107,8 +138,20 @@
 			children = (
 				3D1D9AB0E3CEDE92FF125F74 /* BibleScroll */,
 				B7150E3DF20FCC43AE2870F9 /* BibleScrollUITests */,
+				86ED8F83DD4179A970BA2908 /* BibleScrollWidgets */,
 				1292039AE1473CCC6A3C9BAF /* Products */,
 			);
+			sourceTree = "<group>";
+		};
+		86ED8F83DD4179A970BA2908 /* BibleScrollWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				E756207B0C0AFCD84530E29F /* DailyVerse.swift */,
+				B168563A86625D15BD56ED6D /* DailyVerseWidget.swift */,
+				8BF7EC200A87A16BF32DBD96 /* Info.plist */,
+				FD31375129DFE7E64F255369 /* Resources */,
+			);
+			path = BibleScrollWidgets;
 			sourceTree = "<group>";
 		};
 		B7150E3DF20FCC43AE2870F9 /* BibleScrollUITests */ = {
@@ -119,19 +162,47 @@
 			path = BibleScrollUITests;
 			sourceTree = "<group>";
 		};
+		FD31375129DFE7E64F255369 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC5953DF10FF4F91FD40004A /* daily-verses.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5197FEC1630B89783DB6924A /* BibleScrollWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E24986E9B563AC1480BADBB7 /* Build configuration list for PBXNativeTarget "BibleScrollWidgets" */;
+			buildPhases = (
+				D5643B7EBFEDB79E0DB637A5 /* Sources */,
+				5BD04EC6ACB4ED7980D46F26 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BibleScrollWidgets;
+			packageProductDependencies = (
+			);
+			productName = BibleScrollWidgets;
+			productReference = 3B1940559D97825DEBD50679 /* BibleScrollWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5B246B18613867614C092DD5 /* BibleScroll */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 76C70EC1B2E01E8DFAC24ACC /* Build configuration list for PBXNativeTarget "BibleScroll" */;
 			buildPhases = (
 				60989850F30FEDE40D569164 /* Sources */,
 				532B4763FE9DE3762CC9F941 /* Resources */,
+				7BB9CCD9C5AC79A851C7E918 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7F21A30750C1B0D43C41DFFF /* PBXTargetDependency */,
 			);
 			name = BibleScroll;
 			packageProductDependencies = (
@@ -167,7 +238,12 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					5197FEC1630B89783DB6924A = {
+						DevelopmentTeam = 5EBY7RCNLL;
+						ProvisioningStyle = Automatic;
+					};
 					5B246B18613867614C092DD5 = {
+						DevelopmentTeam = 5EBY7RCNLL;
 						ProvisioningStyle = Automatic;
 					};
 					87460CD91B790AB3560BA760 = {
@@ -190,6 +266,7 @@
 			projectRoot = "";
 			targets = (
 				5B246B18613867614C092DD5 /* BibleScroll */,
+				5197FEC1630B89783DB6924A /* BibleScrollWidgets */,
 				87460CD91B790AB3560BA760 /* BibleScrollUITests */,
 			);
 		};
@@ -206,6 +283,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5BD04EC6ACB4ED7980D46F26 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04B7AB365F53428126D53B1D /* daily-verses.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -213,13 +298,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27AFDE928AF66B80A4758D09 /* AppConfiguration.swift in Sources */,
 				7CB6D8A693A53EA648FAA925 /* AppState.swift in Sources */,
 				4374E1FAFCB03FECF1E4DBAF /* BibleLibrary.swift in Sources */,
 				9111EA93AAD45B9B8423FACE /* BibleScrollApp.swift in Sources */,
 				C57D99DB2B648DF30047A7EE /* ChapterView.swift in Sources */,
 				86D463B57888E8CA31AFD26F /* FeedStore.swift in Sources */,
 				D52405C1E78B0F91258DF243 /* FeedView.swift in Sources */,
-				D2802E087DEFD0D6CEE98E9E /* Keychain.swift in Sources */,
 				4CD8C5E3629C6AA08E70984C /* PassageTextView.swift in Sources */,
 				C0451C108F50827E24A82B7D /* PhotoImageCache.swift in Sources */,
 				4D4EC1459F80018A82D937B2 /* PhotoView.swift in Sources */,
@@ -238,9 +323,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D5643B7EBFEDB79E0DB637A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				77262BEC4E94F389DCE40F1F /* DailyVerse.swift in Sources */,
+				8600D0A33589CA746D109157 /* DailyVerseWidget.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7F21A30750C1B0D43C41DFFF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5197FEC1630B89783DB6924A /* BibleScrollWidgets */;
+			targetProxy = 5AB9873F85F3F30FDA77D5DB /* PBXContainerItemProxy */;
+		};
 		EE464744E61D15A7F8460BB8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 5B246B18613867614C092DD5 /* BibleScroll */;
@@ -257,16 +356,61 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EBY7RCNLL;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		37855DEB9EF3F5879473BA68 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5EBY7RCNLL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BibleScrollWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Daily Bible Verse";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.biblescroll.app.widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		699E3D305C789E9CE1EF67C8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5EBY7RCNLL;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = BibleScrollWidgets/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Daily Bible Verse";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.biblescroll.app.widgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -337,6 +481,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -359,6 +504,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -408,6 +554,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -424,6 +571,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.biblescroll.app;
@@ -444,10 +592,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EBY7RCNLL;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
-				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance = NO;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -484,6 +629,15 @@
 			buildConfigurations = (
 				713383FA6F1554ED7BC3A048 /* Debug */,
 				6A2E20D76CF7F049E24A0F3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E24986E9B563AC1480BADBB7 /* Build configuration list for PBXNativeTarget "BibleScrollWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				699E3D305C789E9CE1EF67C8 /* Debug */,
+				37855DEB9EF3F5879473BA68 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;

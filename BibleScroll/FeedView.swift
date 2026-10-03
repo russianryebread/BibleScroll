@@ -203,11 +203,11 @@ struct FeedView: View {
                 Text("A quiet moment in scripture.")
                     .font(.system(size: 16, design: .serif))
                     .foregroundStyle(.white.opacity(0.8))
-                if store.hasAccessKey {
-                    Button("Load a passage") { Task { await store.loadNext() } }
-                        .buttonStyle(.borderedProminent)
+                if store.isLoading {
+                    ProgressView("Loading a passage…")
+                        .tint(.white)
                 } else {
-                    Button("Add Unsplash access key") { showingSettings = true }
+                    Button("Load a passage") { Task { await store.loadNext() } }
                         .buttonStyle(.borderedProminent)
                 }
                 if let error = store.errorMessage {

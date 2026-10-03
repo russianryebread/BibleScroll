@@ -5,6 +5,8 @@ options:
 settings:
   base:
     SWIFT_VERSION: "5.0"
+    CURRENT_PROJECT_VERSION: "1"
+    MARKETING_VERSION: "1.0"
     TARGETED_DEVICE_FAMILY: "1"
     PRODUCT_BUNDLE_IDENTIFIER: com.biblescroll.app
     GENERATE_INFOPLIST_FILE: YES
@@ -22,13 +24,41 @@ targets:
     settings:
       base:
         CODE_SIGN_STYLE: Automatic
-        DEVELOPMENT_TEAM: ""
+        DEVELOPMENT_TEAM: "5EBY7RCNLL"
+        TARGETED_DEVICE_FAMILY: "1,2"
         INFOPLIST_KEY_CFBundleDisplayName: Bible Scroll
         INFOPLIST_KEY_UIRequiresFullScreen: YES
         INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance: NO
+    dependencies:
+      - target: BibleScrollWidgets
     scheme:
       testTargets:
         - BibleScrollUITests
+  BibleScrollWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: BibleScrollWidgets
+    info:
+      path: BibleScrollWidgets/Info.plist
+      properties:
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.biblescroll.app.widgets
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: "5EBY7RCNLL"
+        TARGETED_DEVICE_FAMILY: "1,2"
+        APPLICATION_EXTENSION_API_ONLY: YES
+        GENERATE_INFOPLIST_FILE: NO
+        SKIP_INSTALL: YES
+        INFOPLIST_KEY_CFBundleDisplayName: Daily Bible Verse
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: NO
+        INFOPLIST_KEY_UILaunchStoryboardName: ""
+        ASSETCATALOG_COMPILER_APPICON_NAME: ""
   BibleScrollUITests:
     type: bundle.ui-testing
     platform: iOS

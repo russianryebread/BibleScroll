@@ -7,12 +7,12 @@ final class FeedStore: ObservableObject {
     @Published private(set) var currentIndex: Int
     @Published private(set) var isLoading = false
     @Published private(set) var errorMessage: String?
-    @Published private(set) var accessKey: String
     @Published private(set) var previewEntry: HistoryEntry?
 
     private var state: SavedState
     private let bible = BibleLibrary.shared
     private let unsplash = UnsplashClient()
+    private let accessKey = AppConfiguration.unsplashAccessKey.trimmingCharacters(in: .whitespacesAndNewlines)
     private var remoteRemaining: Int?
     private var hasStarted = false
     private var preparedNext: Task<HistoryEntry?, Never>?
@@ -47,7 +47,6 @@ final class FeedStore: ObservableObject {
         state = loaded
         history = loaded.history
         currentIndex = min(max(loaded.currentIndex, 0), max(loaded.history.count - 1, 0))
-        accessKey = AccessKeyStore.read()
     }
 
     var currentEntry: HistoryEntry? {
@@ -58,7 +57,7 @@ final class FeedStore: ObservableObject {
         currentEntry.flatMap { bible.passage(for: $0.passageKey) }
     }
 
-    var hasAccessKey: Bool { !accessKey.isEmpty }
+    private var hasAccessKey: Bool { !accessKey.isEmpty }
     var verseCount: Int { bible.verseCount }
 
     func photo(for url: String) -> PhotoRecord? {
@@ -72,21 +71,9 @@ final class FeedStore: ObservableObject {
     func startIfNeeded() async {
         guard !hasStarted else { return }
         hasStarted = true
-        if history.isEmpty && hasAccessKey {
+        if history.isEmpty {
             await loadNext()
         } else if !history.isEmpty && currentIndex >= history.count - 2 {
-            prepareNext()
-        }
-    }
-
-    func setAccessKey(_ value: String) async {
-        let trimmed = value.trimmingCharacters(in: .whitespacesAndNewlines)
-        AccessKeyStore.save(trimmed)
-        accessKey = trimmed
-        errorMessage = nil
-        if history.isEmpty && !trimmed.isEmpty {
-            await loadNext()
-        } else if currentIndex >= history.count - 2 {
             prepareNext()
         }
     }

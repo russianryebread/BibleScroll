@@ -7,7 +7,7 @@ enum PhotoError: LocalizedError {
 
     var errorDescription: String? {
         switch self {
-        case .missingKey: "Add an Unsplash access key in Settings to begin."
+        case .missingKey: "Photos are temporarily unavailable. Please try again later."
         case .badResponse: "The next photo could not be loaded. Try again."
         case .rateLimited: "Unsplash is temporarily rate limiting photo requests."
         }

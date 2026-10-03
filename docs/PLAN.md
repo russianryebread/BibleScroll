@@ -23,7 +23,7 @@ Build a native iPhone app that feels like a short-form video feed, using still U
 - Dark gradient or vignette over the photo, strong enough for white or warm ivory text to remain legible.
 - Georgia-style serif passage text centered horizontally. Small tracked sans serif labels for the reference and secondary information.
 - Reference immediately below the passage; photographer credit near the lower edge; no progress counter, reaction rail, or other social controls.
-- Settings is a native dark sheet with an Unsplash Access Key field and a reverse-chronological history list with thumbnails and references.
+- Settings is a native dark sheet with a reverse-chronological history list with thumbnails and references. Photos load using the app’s embedded Unsplash Access Key; users do not enter credentials.
 
 ## Content and persistence
 
@@ -31,7 +31,7 @@ Build a native iPhone app that feels like a short-form video feed, using still U
 - Generate eligible passages from two or three consecutive verses in the same chapter, with a length range suited to the screen. Avoid recently shown references.
 - A history entry stores a stable local ID, passage key, and photo URL. Its place in the array supplies ordering. Rebuild the verse text from the bundled KJV. Photo attribution metadata is stored separately by URL.
 - Save the current history position across launches. Keep viewed history indefinitely unless a later product decision adds deletion or pruning.
-- Request portrait nature photos from the Unsplash API with public `Client-ID` authentication. Store the Access Key in the iOS Keychain.
+- Request portrait nature photos from the Unsplash API with public `Client-ID` authentication. Embed the app owner’s Access Key in `BibleScroll/AppConfiguration.swift`.
 - Count API attempts in a rolling hour. After 40 requests, or when Unsplash reports ten or fewer calls left, reuse photos in the local pool and avoid immediate repeats. This budget is **per installation**; a public release sharing one key will need server-side coordination.
 - Use returned Unsplash image URLs directly. Include links to the photographer and Unsplash with the required referral parameters.
 
@@ -45,11 +45,11 @@ Build a native iPhone app that feels like a short-form video feed, using still U
 | KJV indexing and passage selection | `BibleScroll/BibleLibrary.swift`, `BibleScroll/Resources/kjv.txt` |
 | Unsplash request and attribution parsing | `BibleScroll/UnsplashClient.swift` |
 | Settings and full history | `BibleScroll/SettingsView.swift` |
-| Access Key storage | `BibleScroll/Keychain.swift` |
+| Embedded Unsplash Access Key | `BibleScroll/AppConfiguration.swift` |
 | Reproducible assets and data checks | `Scripts/`, `project.yml` |
 
 ## Current state and next checks
 
-The app builds for iOS Simulator. The bundled KJV passes the repository's validation script: 66 books, 31,102 unique nonempty verses. The first-run screen and a scripture scene were visually inspected in an iPhone simulator. The whole-scene slide was added after that inspection and compiled, but **its motion and the long-text gesture handoff still need an on-device check**. An Xcode UI test was added for reverse navigation and Settings history; the local test runner stalled while finalizing its log, so that test has not produced a passing result. A real Unsplash request also needs an Access Key entered in Settings.
+The app builds for iOS Simulator. The bundled KJV passes the repository's validation script: 66 books, 31,102 unique nonempty verses. The first-run screen and a scripture scene were visually inspected in an iPhone simulator. The whole-scene slide was added after that inspection and compiled, but **its motion and the long-text gesture handoff still need an on-device check**. An Xcode UI test was added for reverse navigation and Settings history; the local test runner stalled while finalizing its log, so that test has not produced a passing result. A real Unsplash request also needs the app owner’s Access Key embedded in AppConfiguration before building.
 
 Before calling the interaction complete, verify these cases on an iPhone: short-text swipe up/down, long-text scrolling through its bottom and top, slide direction, replay after app restart, a working attribution link, the 40-request recycling behavior, and Reduce Motion. See the root `README.md` for build instructions.

@@ -9,12 +9,22 @@ The agreed behavior, implementation map, remaining checks, and UI image are in [
 1. Install Xcode 16 or later and [XcodeGen](https://github.com/yonaskolb/XcodeGen).
 2. Run `xcodegen generate` in this directory, then open `BibleScroll.xcodeproj`.
 3. Set your development team in Xcode and run on an iPhone or iPhone simulator (iOS 17 or later).
-4. In the app, tap the gear and enter your Unsplash **Access Key**. Create one at [Unsplash Developers](https://unsplash.com/developers). The Secret Key is not used.
+4. Before distributing a build, set the app owner's Unsplash **Access Key** in `BibleScroll/AppConfiguration.swift`. Users do not enter a key; the feed loads automatically. The Secret Key is not used.
 
-The app uses Unsplash's public `Client-ID` authentication. The access key is stored in the iOS Keychain. Photo request timestamps, photo credit metadata, and the ordered history are stored in Application Support. Each history entry contains only the passage key and photo URL (plus a local stable ID). When 40 photo requests have been attempted within a rolling hour, further passages reuse photos from the local pool. This limit applies to one installation; a public release with a shared API key would need a central rate budget.
+The app uses Unsplash's public `Client-ID` authentication with an Access Key embedded in the app. Photo request timestamps, photo credit metadata, and the ordered history are stored in Application Support. Each history entry contains only the passage key and photo URL (plus a local stable ID). When 40 photo requests have been attempted within a rolling hour, further passages reuse photos from the local pool. This limit applies to one installation; the shared key's Unsplash quota applies across all users.
 
 The KJV source is bundled, so passage text is available offline. Previously loaded photos may be available from the system URL cache; new photos require a connection.
 
-## Bible text
+## Lock screen widget
+
+Long-press the iPhone Lock Screen, choose **Customize → Lock Screen → Add Widgets**, then select **Bible Scroll → Daily Bible Verse**. The rectangular widget shows one complete KJV verse and its reference. It rotates through 31 short verses, works offline, and schedules changes at local midnight with a week of entries prepared ahead. iOS controls the actual refresh time, so an update may appear shortly after midnight. Widget content is independent of feed history.
+
+The widget extension is embedded automatically when building the app. Its verse catalog is copied from the bundled KJV, with wording preserved. Preview it in Xcode using `BibleScrollWidgets/DailyVerseWidget.swift`.
+
+Run `sh Scripts/validate_daily_verse.sh` to check daily selection, local midnight transitions, daylight saving changes, leap day, and year rollover.
+
+The app and widget share `MARKETING_VERSION` and `CURRENT_PROJECT_VERSION` in `project.yml`. After building, run `python3 Scripts/validate_app_bundle.py /path/to/BibleScroll.app` to verify both bundles contain matching, nonempty installation version metadata.
+
+## Bible text source
 
 `BibleScroll/Resources/kjv.txt` is the 66-book King James (Authorized) Version from [eBible.org](https://ebible.org/eng-kjv2006/), downloaded as `eng-kjv2006_usfm.zip` on 2026-09-27 and converted with `Scripts/import_kjv.py`. The conversion strips USFM tags, Strong's number metadata, footnotes, and section headings while retaining verse wording. eBible marks this edition public domain outside the UK and notes a UK printing restriction in its [copyright statement](https://ebible.org/eng-kjv2006/copyright.htm).
