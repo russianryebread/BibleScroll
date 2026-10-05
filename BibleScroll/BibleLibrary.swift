@@ -88,16 +88,24 @@ final class BibleLibrary {
         return candidates.first { !recent.contains($0) } ?? candidates.randomElement()
     }
 
+    func passageKey(for reference: String) -> String? {
+        guard let space = reference.lastIndex(of: " "),
+              let book = bookNames.first(where: { $0.value == String(reference[..<space]) })?.key else { return nil }
+        let key = "\(book) \(reference[reference.index(after: space)...])"
+        return passage(for: key) == nil ? nil : key
+    }
+
     func passage(for key: String) -> Passage? {
         guard let colon = key.lastIndex(of: ":") else { return nil }
         let chapterKey = String(key[..<colon])
         let bounds = key[key.index(after: colon)...].split(separator: "-")
-        guard bounds.count == 2, let start = Int(bounds[0]), let end = Int(bounds[1]),
+        guard (1...2).contains(bounds.count), let start = Int(bounds[0]), let end = Int(bounds.last!),
               let verses = chapters[chapterKey], start <= end else { return nil }
         let selected = verses.filter { $0.number >= start && $0.number <= end }
         guard selected.count == end - start + 1, let first = selected.first,
               let bookName = bookNames[first.book] else { return nil }
-        let reference = "\(bookName) \(first.chapter):\(start)–\(end)"
+        let address = start == end ? "\(start)" : "\(start)–\(end)"
+        let reference = "\(bookName) \(first.chapter):\(address)"
         return Passage(key: key, reference: reference, text: selected.map(\.text).joined(separator: " "))
     }
 

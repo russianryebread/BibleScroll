@@ -4,6 +4,14 @@ struct DailyVerse: Codable, Equatable {
     let reference: String
     let text: String
 
+    var appURL: URL {
+        var components = URLComponents()
+        components.scheme = "biblescroll"
+        components.host = "verse"
+        components.queryItems = [URLQueryItem(name: "reference", value: reference)]
+        return components.url!
+    }
+
     static let sample = DailyVerse(
         reference: "Psalm 23:1",
         text: "The LORD is my shepherd; I shall not want."

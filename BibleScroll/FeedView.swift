@@ -61,6 +61,13 @@ struct FeedView: View {
         .sheet(isPresented: $showingSettings) { SettingsView() }
         .sheet(item: $selectedChapter) { ChapterView(chapter: $0) }
         .statusBarHidden()
+        .onOpenURL { url in
+            if store.openVerse(from: url) {
+                showingSettings = false
+                selectedChapter = nil
+                dragOffset = 0
+            }
+        }
     }
 
     private var nextEntry: HistoryEntry? {
@@ -97,10 +104,16 @@ struct FeedView: View {
     }
 
     private func settle(to destination: CGFloat, forward: Bool) {
+        let startingEntryID = store.currentEntry?.id
         isSettling = true
         withAnimation(.easeOut(duration: 0.25)) { dragOffset = destination }
         Task { @MainActor in
             try? await Task.sleep(nanoseconds: 250_000_000)
+            if store.currentEntry?.id != startingEntryID {
+                dragOffset = 0
+                isSettling = false
+                return
+            }
             if forward {
                 await store.next()
             } else {
@@ -143,11 +156,20 @@ struct FeedView: View {
                         Button {
                             selectedChapter = BibleLibrary.shared.chapter(for: passage.key)
                         } label: {
-                            Text(passage.reference.uppercased() + "  ·  KJV")
-                                .font(.system(size: 12, weight: .semibold, design: .rounded))
-                                .tracking(1.8)
-                                .foregroundStyle(.white)
+                            HStack(spacing: 7) {
+                                Image(systemName: "book")
+                                    .font(.system(size: 13, weight: .light))
+                                    .accessibilityHidden(true)
+                                Text(passage.reference.uppercased() + "  ·  KJV")
+                                    .font(.system(size: 12, weight: .semibold, design: .rounded))
+                                    .tracking(1.8)
+                            }
+                            .foregroundStyle(.white)
+                            .frame(minHeight: 44)
+                            .contentShape(Rectangle())
                         }
+                        .buttonStyle(ReferenceButtonStyle())
+                        .accessibilityLabel(passage.reference.uppercased() + "  ·  KJV")
                         .accessibilityHint("Opens the full chapter")
                     }
                     .frame(maxWidth: .infinity)
@@ -229,5 +251,12 @@ struct FeedView: View {
         )
         let lineCount = max(1, Int(ceil(bounds.height / font.lineHeight)))
         return ceil(bounds.height + CGFloat(lineCount - 1) * 4)
+    }
+}
+
+private struct ReferenceButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .opacity(configuration.isPressed ? 0.65 : 1)
     }
 }

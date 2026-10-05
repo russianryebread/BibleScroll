@@ -15,9 +15,13 @@ The app uses Unsplash's public `Client-ID` authentication with an Access Key emb
 
 The KJV source is bundled, so passage text is available offline. Previously loaded photos may be available from the system URL cache; new photos require a connection.
 
-## Lock screen widget
+## Daily verse widgets
 
 Long-press the iPhone Lock Screen, choose **Customize → Lock Screen → Add Widgets**, then select **Bible Scroll → Daily Bible Verse**. The rectangular widget shows one complete KJV verse and its reference. It rotates through 31 short verses, works offline, and schedules changes at local midnight with a week of entries prepared ahead. iOS controls the actual refresh time, so an update may appear shortly after midnight. Widget content is independent of feed history.
+
+For the unlocked Home Screen, long-press an empty area, choose **Edit → Add Widget**, and find **Bible Scroll → Daily Bible Verse**. Choose the small square or medium rectangle. Both show the same daily verse as the Lock Screen widget, with a quiet dark background and serif text. They also support Today View.
+
+Open the newly installed app once before adding its widget. The Lock Screen version belongs in the rectangular widget area **below the clock**; the inline area above the clock is not supported. If multiple development copies of Bible Scroll are installed, open the copy that Xcode just ran.
 
 The widget extension is embedded automatically when building the app. Its verse catalog is copied from the bundled KJV, with wording preserved. Preview it in Xcode using `BibleScrollWidgets/DailyVerseWidget.swift`.
 

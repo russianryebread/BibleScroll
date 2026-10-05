@@ -15,6 +15,7 @@ final class FeedStore: ObservableObject {
     private let accessKey = AppConfiguration.unsplashAccessKey.trimmingCharacters(in: .whitespacesAndNewlines)
     private var remoteRemaining: Int?
     private var hasStarted = false
+    private var navigationVersion = 0
     private var preparedNext: Task<HistoryEntry?, Never>?
 
     init() {
@@ -101,8 +102,30 @@ final class FeedStore: ObservableObject {
         if currentIndex >= history.count - 2 { prepareNext() }
     }
 
+    @discardableResult
+    func openVerse(from url: URL) -> Bool {
+        guard url.scheme == "biblescroll", url.host == "verse",
+              let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+              let reference = components.queryItems?.first(where: { $0.name == "reference" })?.value,
+              let key = bible.passageKey(for: reference) else { return false }
+        navigationVersion += 1
+        errorMessage = nil
+        if let entry = history.last(where: { $0.passageKey == key }) {
+            jump(to: entry)
+        } else {
+            // Show scripture immediately, even offline or before any photos have loaded.
+            let photoURL = currentEntry?.photoURL ?? state.photos.first?.url ?? ""
+            history.append(HistoryEntry(passageKey: key, photoURL: photoURL))
+            currentIndex = history.count - 1
+            persist()
+            prepareNext()
+        }
+        return true
+    }
+
     func loadNext() async {
         guard !isLoading else { return }
+        let version = navigationVersion
         isLoading = true
         errorMessage = nil
         defer { isLoading = false }
@@ -123,13 +146,14 @@ final class FeedStore: ObservableObject {
             preparedNext = nil
             previewEntry = nil
             state.history.append(entry)
-            state.currentIndex = state.history.count - 1
+            state.currentIndex = version == navigationVersion ? state.history.count - 1 : currentIndex
             errorMessage = nil
             history = state.history
             currentIndex = state.currentIndex
             StateFile.save(state)
             prepareNext()
         } catch {
+            guard version == navigationVersion else { return }
             preparedNext = nil
             previewEntry = nil
             errorMessage = error.localizedDescription

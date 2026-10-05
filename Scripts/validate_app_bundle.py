@@ -9,7 +9,7 @@ metadata = []
 for bundle in (app, widget):
     with (bundle / "Info.plist").open("rb") as source:
         info = plistlib.load(source)
-    for key in ("CFBundleVersion", "CFBundleShortVersionString"):
+    for key in ("CFBundleVersion", "CFBundleShortVersionString", "CFBundleDisplayName"):
         value = info.get(key)
         assert isinstance(value, str) and value.strip(), f"{bundle.name}: missing or empty {key}"
         assert "$" not in value, f"{bundle.name}: unresolved {key}: {value}"

@@ -77,6 +77,7 @@
 		7B32B33732DD675F0322D05D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BF7EC200A87A16BF32DBD96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8FA963F8A8CA245368AD915F /* FeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedStore.swift; sourceTree = "<group>"; };
+		A163F29677D93DCC3DCBA31B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		A3F5B7DE42E55BC82C348276 /* FeedUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedUITests.swift; sourceTree = "<group>"; };
 		AE9F24BFE854C0EAF1DE968F /* BibleScroll.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BibleScroll.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF70A19E2AED8612D94DE0F4 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
@@ -112,6 +113,7 @@
 				EBAEBC15BD829C87903E54AC /* ChapterView.swift */,
 				8FA963F8A8CA245368AD915F /* FeedStore.swift */,
 				DC89CAEE8B45C33CAB797B17 /* FeedView.swift */,
+				A163F29677D93DCC3DCBA31B /* Info.plist */,
 				4CF00C6A8E35994EABC019B8 /* LaunchScreen.storyboard */,
 				00C90E8513B68A4115CD7238 /* PassageTextView.swift */,
 				1BD93F8198921FA99685547F /* PhotoImageCache.swift */,
@@ -355,6 +357,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EBY7RCNLL;
+				INFOPLIST_FILE = BibleScroll/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance = NO;
@@ -376,7 +379,7 @@
 				DEVELOPMENT_TEAM = 5EBY7RCNLL;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = BibleScrollWidgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Daily Bible Verse";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -400,7 +403,7 @@
 				DEVELOPMENT_TEAM = 5EBY7RCNLL;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = BibleScrollWidgets/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Daily Bible Verse";
+				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = NO;
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -591,6 +594,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5EBY7RCNLL;
+				INFOPLIST_FILE = BibleScroll/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Bible Scroll";
 				INFOPLIST_KEY_UIRequiresFullScreen = YES;
 				INFOPLIST_KEY_UIViewControllerBasedStatusBarAppearance = NO;
